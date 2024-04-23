@@ -18,7 +18,7 @@ ALGORITHM = {
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--num", type=int, default=2000, help="number of points to generate")
-    parser.add_argument("--method", type=str, default="all", help="method to use for convex hull computation")
+    parser.add_argument("--method", type=str, default="all", help="method to use: enum, graham, divide, all")
     parser.add_argument("--plot", action="store_true", help="plot the points and the convex hull")
     parser.add_argument("--seed", type=int, default=0, help="seed for random number generation")
     parser.add_argument("--profile", action="store_true", help="profile the code")

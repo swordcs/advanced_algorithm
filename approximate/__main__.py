@@ -29,7 +29,7 @@ def generate_data(data_num, set_num,inital_size=20, seed=0):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--num", type=int, default=1, help="number of data points")
-    parser.add_argument("--method", type=str, default="greedy", help="method to use for set cover")
+    parser.add_argument("--method", type=str, default="greedy", help="method to use: greedy, lp")
     parser.add_argument("--seed", type=int, default=0, help="random seed")
     args = parser.parse_args()
 

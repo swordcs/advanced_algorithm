@@ -115,7 +115,7 @@ def run_algorithm(maze, method='uni', render=False):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--maze", type=int, default=1, help="maze to use")
-    parser.add_argument("--method", type=str, default="uni", help="method to use for path finding")
+    parser.add_argument("--method", type=str, default="uni", help="method to use: uni, bi")
     args = parser.parse_args()
 
     mazes = [MAZE_1, MAZE_2]
