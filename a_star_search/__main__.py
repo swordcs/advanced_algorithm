@@ -1,7 +1,7 @@
 import argparse
 
-from .uni_astar import astar_search
-from .bi_astar import bidirectional_astar_search
+from .uni_version import astar_search
+from .bi_version import bidirectional_astar_search
 
 MAZE_1 = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -70,6 +70,7 @@ MARK_MAP = {
     9: colors.RED + "T",
 }
 
+# cost for terrain
 COST = {
     0: 0,
     2: 4,
