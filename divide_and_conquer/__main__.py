@@ -1,3 +1,4 @@
+import time
 import random
 import argparse
 
@@ -27,6 +28,7 @@ def main():
     parser.add_argument("--method", type=str, default="all", help="method to use for convex hull computation")
     parser.add_argument("--plot", action="store_true", help="plot the points and the convex hull")
     parser.add_argument("--seed", type=int, default=0, help="seed for random number generation")
+    parser.add_argument("--profile", action="store_true", help="profile the code")
     args = parser.parse_args()
     points = generat_points(args.num)
     result = {}
@@ -34,17 +36,30 @@ def main():
         print(f"Invalid method {args.method}")
         return
 
+    cost_stats = {}
     if args.method == "all":
-        for method in ALGORITHM:
-            res = ALGORITHM[method](points=points)
-            result[method] = res
+        alg_run = ALGORITHM
     else:
-        res = ALGORITHM[args.method](points=points)
-        result[args.method] = res
+        alg_run = [args.method]
+
+    for method in alg_run.keys():
+        res = run_algorithm(method, points)
+        result[method] = res['hull']
+        cost_stats[method] = res['time']
 
     if args.plot:
         for method, hull in result.items():
             plot_points(points, hull, method)
+    if args.profile:
+        for method, cost in cost_stats.items():
+            print(f"Point: {args.num}, Method: {method}, Time: {cost}")
+
+
+def run_algorithm(method, points):
+    start_time = time.time()  
+    res = ALGORITHM[method](points=points)
+    end_time  = time.time()
+    return {'hull': res, 'time': end_time - start_time}
 
 def plot_points(points, hull, method):
     import matplotlib.pyplot as plt
