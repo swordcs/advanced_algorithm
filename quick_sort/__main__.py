@@ -11,6 +11,7 @@ def generate_data_sets(size, duplicates_percentage, sorted_most=True):
         counts=[random.randint(0, size // 10) for _ in range(size)],
         k=int(size * duplicates_percentage),
     )
+    data_set = data_set[-size:]
     if not sorted_most:
         random.shuffle(data_set)
     return tuple(data_set)
@@ -54,8 +55,11 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--num", type=int, default=1, help="number of data points")
     parser.add_argument("--plot", action="store_true", help="plot the performance")
+    parser.add_argument("--seed", type=int, default=0, help="random seed")
 
     args = parser.parse_args()
+
+    random.seed(args.seed)
 
     time_cost = []
     time_cost_opt = []
