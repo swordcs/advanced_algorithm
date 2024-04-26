@@ -25,6 +25,7 @@ def astar_search(maze, start, end, cost):
     while open_set:
         current = min(open_set, key=lambda x: f_score[x])
         if current == end:
+            print(g_score[current])
             return reconstruct_path(came_from, current)
         open_set.remove(current)
         for neighbor in get_neighbors(current):
